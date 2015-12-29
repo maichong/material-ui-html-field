@@ -22,7 +22,7 @@ export default class MyAwesomeReactComponent extends React.Component  {
     };
   }
   render(){
-    let editorConfig(){
+    let editorConfig={
 		//simditor configure
     }
     return (
