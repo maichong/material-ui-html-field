@@ -1,0 +1,46 @@
+{
+  "name": "material-ui-html-field",
+  "version": "0.1.0",
+  "description": "Html WYSIWYG editor based on react & material-ui & simditor",
+  "main": "lib/html-field.js",
+  "scripts": {
+    "build": "babel ./src --out-dir ./lib",
+    "prebuild": "rimraf lib",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maichong/material-ui-html-field.git"
+  },
+  "keywords": [
+    "Html",
+    "WYSIWYG",
+    "editor",
+    "material-ui",
+    "react",
+    "simditor"
+  ],
+  "author": {
+    "name": "Liang",
+    "email": "liang@maichong.it",
+    "url": "https://github.com/liangxingchen"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maichong/material-ui-html-field/issues"
+  },
+  "homepage": "https://github.com/maichong/material-ui-html-field#readme",
+  "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.3.13",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-stage-1": "^6.3.13",
+    "rimraf": "^2.5.0"
+  },
+  "peerDependencies": {
+    "react": "^0.14.3"
+  },
+  "dependencies": {
+    "simditor": "^2.3.6"
+  }
+}
