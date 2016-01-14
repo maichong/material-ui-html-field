@@ -1,6 +1,6 @@
 {
   "name": "material-ui-html-field",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Html WYSIWYG editor based on react & material-ui & simditor",
   "main": "lib/html-field.js",
   "scripts": {

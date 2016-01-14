@@ -9,6 +9,7 @@
 import React from 'react';
 
 import Simditor from 'simditor';
+import 'simditor/styles/simditor.css';
 import DefaultRawTheme from 'material-ui/lib/styles/raw-themes/light-raw-theme';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
 import Transitions from 'material-ui/lib/styles/transitions';
@@ -78,6 +79,10 @@ const HtmlField = React.createClass({
     }
   },
 
+  componentDidMount(){
+    this._initEditor();
+  },
+
   componentWillUnmount() {
     if (this._editor) {
       this._editor.destroy();
@@ -134,58 +139,12 @@ const HtmlField = React.createClass({
   render() {
     let {
       className,
-      errorStyle,
       errorText,
       floatingLabelStyle,
-      floatingLabelText,
-      ref,
-      style,
-      value,
-      onBlur,
-      onChange,
-      onFocus,
-      hintText,
-      toolbar,
-      toolbarFloat,
-      toolbarFloatOffset,
-      toolbarHidden,
-      defaultImage,
-      tabIndent,
-      params,
-      upload,
-      pasteImage,
-      cleanPaste,
-      imageButton,
-      allowedTags,
-      allowedAttributes,
-      allowedStyles,
-      codeLanguages,
+      floatingLabelText
       } = this.props;
 
-    if (!this._editor && this.refs.editor) {
-      this._editor = new Simditor({
-        textarea: this.refs.editor,
-        toolbar,
-        toolbarFloat,
-        toolbarFloatOffset,
-        toolbarHidden,
-        defaultImage,
-        tabIndent,
-        params,
-        upload,
-        pasteImage,
-        cleanPaste,
-        imageButton,
-        allowedTags,
-        allowedAttributes,
-        allowedStyles,
-        codeLanguages
-      });
-      this._editor.setValue(this.props.value);
-      this._editor.on('valuechanged', this._handleValueChange.bind(this));
-      this._editor.on('focus', this._handleFocus.bind(this));
-      this._editor.on('blur', this._handleBlur.bind(this));
-    }
+    this._initEditor();
     let styles = this.getStyles();
 
     let floatingLabelTextElement = floatingLabelText ? (
@@ -203,7 +162,7 @@ const HtmlField = React.createClass({
     return (
       <div className={className} style={this.prepareStyles(styles.root, this.props.style)}>
         {floatingLabelTextElement}
-        <textarea ref="editor" />
+        <textarea ref="editor"/>
         {errorTextElement}
       </div>
     );
@@ -232,6 +191,50 @@ const HtmlField = React.createClass({
   _handleBlur(e) {
     this.props.onBlur && this.props.onBlur(e);
   },
+
+  _initEditor(){
+    if (!this._editor && this.refs.editor) {
+      let {
+        toolbar,
+        toolbarFloat,
+        toolbarFloatOffset,
+        toolbarHidden,
+        defaultImage,
+        tabIndent,
+        params,
+        upload,
+        pasteImage,
+        cleanPaste,
+        imageButton,
+        allowedTags,
+        allowedAttributes,
+        allowedStyles,
+        codeLanguages,
+        } = this.props;
+      this._editor = new Simditor({
+        textarea: this.refs.editor,
+        toolbar,
+        toolbarFloat,
+        toolbarFloatOffset,
+        toolbarHidden,
+        defaultImage,
+        tabIndent,
+        params,
+        upload,
+        pasteImage,
+        cleanPaste,
+        imageButton,
+        allowedTags,
+        allowedAttributes,
+        allowedStyles,
+        codeLanguages
+      });
+      this._editor.setValue(this.props.value);
+      this._editor.on('valuechanged', this._handleValueChange);
+      this._editor.on('focus', this._handleFocus);
+      this._editor.on('blur', this._handleBlur);
+    }
+  }
 });
 
 export default HtmlField;
