@@ -75,6 +75,7 @@ value
 
 hintText
 
+locale `en-US` or `zh-CN`
 
 [Simditor Config](http://simditor.tower.im/docs/doc-config.html)
 

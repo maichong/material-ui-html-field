@@ -40,6 +40,7 @@ const HtmlField = React.createClass({
     hintText: React.PropTypes.string,
     style: React.PropTypes.object,
     value: React.PropTypes.string,
+    locale: React.PropTypes.string,
   },
 
   childContextTypes: {
@@ -210,7 +211,11 @@ const HtmlField = React.createClass({
         allowedAttributes,
         allowedStyles,
         codeLanguages,
+        locale,
         } = this.props;
+      if (typeof locale !== 'undefined') {
+        Simditor.locale = locale;
+      }
       this._editor = new Simditor({
         textarea: this.refs.editor,
         toolbar,
